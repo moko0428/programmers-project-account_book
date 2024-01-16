@@ -1,13 +1,29 @@
 {
-    "posts": [
-        { "id": "1", "title": "a title" },
-        { "id": "2", "title": "another title" }
-    ],
-    "comments": [
-        { "id": "1", "text": "a comment about post 1", "postId": "1" },
-        { "id": "2", "text": "another comment about post 1", "postId": "1" }
-    ],
-    "profile": {
-        "name": "typicode"
-    }
+    "current-asset": {},
+    "consumption-details": [
+        {
+            "id": 3,
+            "price": 10000,
+            "category": "카페",
+            "fundsAtTheTime": 90000,
+            "description": "아메리카노",
+            "createAt": "2024-01-16T11:48:34.872Z"
+        },
+        {
+            "id": 2,
+            "price": 10000,
+            "category": "카페",
+            "fundsAtTheTime": 80000,
+            "description": "아메리카노",
+            "createAt": "2024-01-16T11:48:34.872Z"
+        },
+        {
+            "id": 1,
+            "price": 10000,
+            "category": "카페",
+            "fundsAtTheTime": 70000,
+            "description": "아메리카노",
+            "createAt": "2024-01-16T11:48:34.872Z"
+        }
+    ]
 }

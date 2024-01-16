@@ -1,8 +1,8 @@
 import axios from 'axios';
-// import { PORT } from '../../server';
+import { PORT } from './add-current-asset';
 
 export const getCurrentAsset = async () => {
-    const { data } = await axios.get(`http://localhost:3003/current-asset`);
-    // console.log(PORT);
+    const { data } = await axios.get(`http://localhost:${PORT}/current-asset`);
+
     return data;
 };
