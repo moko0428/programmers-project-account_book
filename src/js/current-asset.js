@@ -1,4 +1,4 @@
-import { addCurrentAsset } from '../api/add-current-asset';
+import { updateCurrentAsset } from '../api/update-current-asset';
 import { getCurrentAsset } from '../api/get-current-asset';
 import { toHidden, toShow } from './util';
 
@@ -9,25 +9,25 @@ const $currentAssetButton = document.querySelector('.current-asset-button');
 const $currentAssetButtonLoader = document.querySelector('.current-asset-button-loader');
 const $addItemButton = document.querySelector('.add-item-button');
 
-export const initCurrentAsset = async () => {
+export const initCurrentAsset = () => {
     handleGetCurrentAsset();
 
     $currentAssetButton.addEventListener('click', function () {
         const inputValue = $currentAssetInput.value;
         if (inputValue > 0) {
-            handleAddCurrentAsset();
+            handleAddCurrentAsset(inputValue);
+            toHidden($currentAssetButton);
         } else {
-            console.warn('0원 이상 기입해주세요.');
+            console.warn('0원 이상이 아닙니다.');
         }
     });
 };
 
-const handleAddCurrentAsset = async (inputValue) => {
+export const handleAddCurrentAsset = async (inputValue) => {
     toShow($currentAssetButtonLoader);
     toHidden($currentAssetButton);
 
-    await addCurrentAsset(inputValue);
-    console.log(inputValue);
+    await updateCurrentAsset(Number(inputValue));
 
     toHidden($currentAssetButtonLoader);
     toShow($currentAssetButton);
@@ -36,14 +36,12 @@ const handleAddCurrentAsset = async (inputValue) => {
 };
 
 const handleGetCurrentAsset = async () => {
-    // loading true
     toShow($currentAssetLoader);
+
     try {
         const { price } = await getCurrentAsset();
-
         if (price > 0) {
-            $currentAssetValue.textContent = price;
-
+            $currentAssetValue.textContent = price.toLocaleString();
             toHidden($currentAssetInput);
         } else {
             toShow($currentAssetInput);
@@ -51,9 +49,8 @@ const handleGetCurrentAsset = async () => {
             toHidden($addItemButton);
         }
     } catch (err) {
-        console.error('현재 자산을 조회하는데 실패했습니다.');
+        console.error('현재자산을 조회한는데 실패했습니다.');
     }
-    toHidden($currentAssetLoader);
 
-    // 성공/실패 피드백
+    toHidden($currentAssetLoader);
 };
