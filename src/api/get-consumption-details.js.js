@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PORT } from './add-current-asset';
+import { PORT } from './update-current-asset';
 
 // 현재 소비내역
 export const getConsumptionDetails = async () => {
